@@ -441,6 +441,8 @@ legend + * {
   -webkit-appearance: textfield;
 }
 
+
+
 /* rtl:raw:
 [type="tel"],
 [type="url"],
@@ -6273,6 +6275,9 @@ textarea.form-control-lg {
   background-position: 50%;
   background-size: 100% 100%;
 }
+
+
+#map { height: 800px; width: 100%;}
 
 /* rtl:options: {
   "autoRename": true,
