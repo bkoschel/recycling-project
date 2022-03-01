@@ -133,25 +133,25 @@ function isInside(polygon, n, p) {
 // given latitude and longitude of the current location
 // return the name of district (according to the name in the db)
 function returnDistrict(lat, long) {
-  const redNorthLayer = require("../data/zone-red-north.json");
+  const redNorthLayer = require("../../data/zone-red-north.json");
   console.log(redNorthLayer.features[0].properties.name);
-  const blueNorthLayer = require("../data/zone-blue-north.json");
+  const blueNorthLayer = require("../../data/zone-blue-north.json");
   console.log(blueNorthLayer.features[0].properties.name);
-  const purpleNorthLayer = require("../data/zone-purple-north.json");
+  const purpleNorthLayer = require("../../data/zone-purple-north.json");
   console.log(purpleNorthLayer.features[0].properties.name);
-  const greenNorthLayer = require("../data/zone-green-north.json");
+  const greenNorthLayer = require("../../data/zone-green-north.json");
   console.log(greenNorthLayer.features[0].properties.name);
-  const yellowNorthLayer = require("../data/zone-yellow-north.json");
+  const yellowNorthLayer = require("../../data/zone-yellow-north.json");
   console.log(yellowNorthLayer.features[0].properties.name);
-  const redSouthLayer = require("../data/zone-red-south.json");
+  const redSouthLayer = require("../../data/zone-red-south.json");
   console.log(redSouthLayer.features[0].properties.name);
-  const blueSouthLayer = require("../data/zone-blue-south.json");
+  const blueSouthLayer = require("../../data/zone-blue-south.json");
   console.log(blueSouthLayer.features[0].properties.name);
-  const purpleSouthLayer = require("../data/zone-purple-south.json");
+  const purpleSouthLayer = require("../../data/zone-purple-south.json");
   console.log(purpleSouthLayer.features[0].properties.name);
-  const greenSouthLayer = require("../data/zone-green-south.json");
+  const greenSouthLayer = require("../../data/zone-green-south.json");
   console.log(greenSouthLayer.features[0].properties.name);
-  const yellowSouthLayer = require("../data/zone-yellow-south.json");
+  const yellowSouthLayer = require("../../data/zone-yellow-south.json");
   console.log(yellowSouthLayer.features[0].properties.name);
 
   let zones = [

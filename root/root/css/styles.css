@@ -441,8 +441,6 @@ legend + * {
   -webkit-appearance: textfield;
 }
 
-
-
 /* rtl:raw:
 [type="tel"],
 [type="url"],
@@ -6276,7 +6274,6 @@ textarea.form-control-lg {
   background-size: 100% 100%;
 }
 
-
 #map { height: 800px; width: 100%;}
 
 /* rtl:options: {
@@ -11498,7 +11495,7 @@ body {
 #mainNav .navbar-nav .nav-item:hover {
   color: fade(#fff, 80%);
   outline: none;
-  background-color: transparent;
+  background-color: grey;
 }
 #mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
   outline: none;
@@ -11509,17 +11506,17 @@ body {
     padding-top: 0;
     padding-bottom: 0;
     border-bottom: none;
-    background-color: transparent;
+    background-color: white;
     transition: background-color 0.3s ease-in-out;
   }
   #mainNav .navbar-brand {
     padding: 0.5rem 0;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.75);
   }
   #mainNav .nav-link {
     transition: none;
     padding: 2rem 1.5rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.75);
   }
   #mainNav .nav-link:hover {
     color: rgba(255, 255, 255, 0.75);
