@@ -1,19 +1,310 @@
 <!DOCTYPE html>
-<html>
-<head>
-    // copied from: https://github.com/nmayur/File-structure/blob/master/index.html
-    <meta charset="UTF-8">
-    <title>Files and Folder Structure</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/mainStyles.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-</head>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>re!schedule</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!-- Leaflet Map setup-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- plugin set up -->
+        <script src="js/leaflet.ajax.min.js"></script>
 
-<body>
-    <script src="/js/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/esm/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/mainFunctions.js"></script>
-</body>
+		
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">re!schedule</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#map">Map</a></li>
+						<li class="nav-item"><a class="nav-link" href="#calendar">Calendar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#signup">Subscribe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+                        <h1 class="mx-auto my-0 text-uppercase">re!schedule</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Get your locations recycling, garbage and compost pick up schedule.</h2>
+                        <a class="btn btn-primary" href="#about">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- About-->
+        <section class="about-section text-center" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="text-white mb-4">Use you location to get your pick up schedule</h2>
+                        <p class="text-white-50">
+                            re!schedule makes recycling a breeze.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Map-->
+        <section class="map-section bg-light" id="map">
+            <div class="container px-4 px-lg-5">
+                <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+				  <h4 class="align-items-center">Find your location on the map</h4>
+                  <div id="map"></div>
+                  <!-- <script scr="/ui/recycling-project/root/js/geolocation.js"></script> -->
+                  <script>
+                      const mymap = L.map('map', {zoom: 13}).setView([ 49.263, -123.1919], 13);
+                      const marker = L.marker([0,0]).addTo(mymap);
+
+
+
+                    const attribution = '&copy; <a href= "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+                    const tileURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+                    const tiles = L.tileLayer(tileURL,{ attribution });
+                    tiles.addTo(mymap);
+
+                        //   var geoJsonLayer; = L.geoJSON.ajax('zone-red-north.json');
+                        var redNorthLayer = L.geoJSON.ajax('assets/data/zone-red-north.json', {style:style});
+                        var blueNorthLayer = L.geoJSON.ajax('assets/data/zone-blue-north.json', {style:style});
+                        var purpleNorthLayer = L.geoJSON.ajax('assets/data/zone-purple-north.json', {style:style});
+                        var greenNorthLayer = L.geoJSON.ajax('assets/data/zone-green-north.json', {style:style});
+                        var yellowNorthLayer = L.geoJSON.ajax('assets/data/zone-yellow-north.json', {style:style});
+                        var redSouthLayer = L.geoJSON.ajax('assets/data/zone-red-south.json', {style:style});
+                        var blueSouthLayer = L.geoJSON.ajax('assets/data/zone-blue-south.json', {style:style});
+                        var purpleSouthLayer = L.geoJSON.ajax('assets/data/zone-purple-south.json', {style:style});
+                        var greenSouthLayer = L.geoJSON.ajax('assets/data/zone-green-south.json', {style:style});
+                        var yellowSouthLayer = L.geoJSON.ajax('assets/data/zone-yellow-south.json', {style:style});
+
+                        function getColor(name) {
+                            return name == "Red-North" ? '#de2d26':
+                                    name == "Red-South" ? '#f03b20':
+                                    name == "Blue-North" ? '#2b8cbe':
+                                    name == "Blue-South" ? '#9ecae1':
+                                    name == "Green-North" ? '#31a354':
+                                    name == "Green-South" ? '#a1d99b':
+                                    name == "Purple-North" ? '#756bb1':
+                                    name == "Purple-South" ? '#bcbddc':
+                                    name == "Yellow-North" ? '#fec44f':
+                                    name == "Yellow-South" ? '#fff7bc':
+                                                            'ffffff';
+                        }
+
+                        function style(feature) {
+                            return {
+                                fillColor: getColor(feature.properties.name),
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7
+                            };
+                        }
+
+                        function destination(dest) {
+                            return d = "n" ? "North - Red":
+                                                "Unknown";
+                        }
+
+                        function date() {
+                            return "Jan 7";
+                        }
+
+                        function message() {
+                            return "<h1> Recycling Schedule: </h1> " + 
+                            "<h2>" + destination("n") +" </h2>" +
+                            "<p> Garbage Pickup: " + date() + "</p>" +
+                            "<p> Green Bin:" + date() + " </p>"
+
+                        }
+
+                        redNorthLayer.addTo(mymap);
+                        blueNorthLayer.addTo(mymap);
+                        purpleNorthLayer.addTo(mymap);
+                        yellowNorthLayer.addTo(mymap);
+                        greenNorthLayer.addTo(mymap);
+                        redSouthLayer.addTo(mymap);
+                        blueSouthLayer.addTo(mymap);
+                        purpleSouthLayer.addTo(mymap);
+                        greenSouthLayer.addTo(mymap);
+                        yellowSouthLayer.addTo(mymap);
+
+                        // only works in HTTPS/local environments
+                        if ('geolocation' in navigator) {
+                            navigator.geolocation.getCurrentPosition(onSuccess,onErrorDenied);
+                        } else {
+                            console.log("sos ain't working");
+                        }
+
+                        function onSuccess(position) {
+                            lat = position.coords.latitude;
+                            lon = position.coords.longitude;
+                            marker.setLatLng([lat, lon]);
+                            console.log('huh');
+                        }
+
+                        function onErrorDenied(error) {
+                            if (error.PERMISSION_DENIED) {
+                                console.log('denied');
+                                marker.setLatLng([49.263,-123.1919]);
+                            } else {
+                                console.log('bye');
+                            }
+                        }
+
+                        console.log('what');
+
+                        function getValue() {
+                            const value = addressText.value;
+                            console.log(value);
+                        }
+
+
+                        // L.geoJSON(geoJsonLayer, {style:style}).addTo(mymap);
+                        // marker.setLatLng([49.263, -123.1919]);
+                        // marker.bindPopup(message).openPopup();
+
+
+
+
+                  </script>
+                  <!-- <iframe type= "text/javascript" src="/ui/recycling-project/root/js/geolocation.js"></iframe> -->
+                   <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d85364.59519825508!2d-123.12842412459217!3d49.24766809191783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1642652910303!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+		<!-- Calendar-->
+
+     
+		</section>
+        <!-- Signup-->
+        <section class="signup-section" id="signup">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-md-10 col-lg-8 mx-auto text-center">
+                        <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+                        <h2 class="text-white mb-5">Subscribe to receive notifications!</h2>
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
+                        <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                            <!-- Email address input-->
+                            <div class="row input-group-newsletter">
+                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Enter email address..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
+                                <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notify Me!</button></div>
+                            </div>
+                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
+                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
+                            <!-- Submit success message-->
+                            <!---->
+                            <!-- This is what your users will see when the form-->
+                            <!-- has successfully submitted-->
+                            <div class="d-none" id="submitSuccessMessage">
+                                <div class="text-center mb-3 mt-2 text-white">
+                                    <div class="fw-bolder">Form submission successful!</div>
+                                    To activate this form, sign up at
+                                    <br />
+                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                </div>
+                            </div>
+                            <!-- Submit error message-->
+                            <!---->
+                            <!-- This is what your users will see when there is-->
+                            <!-- an error submitting the form-->
+                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact-->
+        <section class="contact-section bg-black">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">Address</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-envelope text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">Email</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50"><a href="#!">hello@yourdomain.com</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">Phone</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50">+1 (555) 902-8832</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="social d-flex justify-content-center">
+                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2021</div></footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+		
+    </body>
 </html>
-
