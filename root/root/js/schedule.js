@@ -3,7 +3,7 @@
 
 import { listHolidays, addSchedule } from "./database.js";
 
-function main() {
+function schedule() {
     // make sure generateHolidayList has been run beforehand with the year you need
     var bool = generateSchedule(2022, "N-blue", 1, true);
 
@@ -25,7 +25,7 @@ function main() {
     generateSchedule(2022, "S-red", 5, false);
 }
 
-// main();
+// schedule();
 
 // given a year, (any extra holidays), district and the first day it starts on, produces a list of schedules for each recycling districts
 // assumes list of holidays have already been added to db

@@ -38,6 +38,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="./index.html">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="./map.html">Map</a></li>
+<!--                <li class="nav-item"><a class="nav-link" href="./autocomplete.html">Search</a></li>-->
                 <li class="nav-item"><a class="nav-link" href="./calendar.html">Calendar</a></li>
                 <li class="nav-item"><a class="nav-link" href="./signup.html">Subscribe</a></li>
             </ul>
@@ -45,12 +46,48 @@
     </div>
 </nav>
 <section class="address-section">
-    <script async src="js/autocomplete.js"></script>
+<!--    <script async src="js/autocomplete.js"></script>-->
+    <script>
+        let autocomplete;
+        let name;
+        let long;
+        let lat;
+        let coords = {
+            table: []
+        };
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('autocomplete'),
+                {
+                    types: ['geocode'],
+                    componentRestrictions: {'country' : ['CA']},
+                    fields: ['place_id', 'geometry', 'name']
+                });
+            autocomplete.addListener('place_changed', onPlaceChanged);
+        }
+
+        function onPlaceChanged() {
+            // get info on place selected
+            var place = autocomplete.getPlace();
+
+            if (!place.geometry) {
+                // User did not select a prediction; reset the input field
+                document.getElementById('autocomplete').placeholder = 'Enter a place';
+            } else {
+                // Display details about the valid place
+                // document.getElementById('details').innerHTML = place.name;
+                name = place.name;
+                lat = place.geometry.location.lat();
+                long = place.geometry.location.lng();
+                binMarker.setLatLng([lat, long]);
+            }
+        }
+    </script>
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnho33gwnDR-rdbvSdEtERPMku2jR-W-0&libraries=places&callback=initAutocomplete" async defer></script>
     <div class="row input-group-sm">
         <div class="col"><input class="form-control" id="autocomplete" type="text" placeholder="Enter a place" aria-label="Enter a place"/></div>
+        <div class="col-auto"><button onclick="location.href='autocomplete.html'" type="button">Get schedule!</button></div>
     </div>
-    <!--            <div class="form-control" id="autocomplete" placeholder="Enter a place" type="text"/>-->
 </section>
 <section class="map-section bg-white" id="map">
 
@@ -60,7 +97,8 @@
             <h4 class="align-items-center">Find your location on the map</h4>
             <!-- <script scr="/ui/recycling-project/root/js/geolocation.js"></script> -->
             <script>
-                // attribution as required
+
+
                 const attribution = '&copy; <a href= "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
                 const tileURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
@@ -212,10 +250,13 @@
                 };
 
 
-
-
-
-
+                function getLocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition);
+                    } else {
+                        x.innerHTML = "Geolocation is not supported by this browser.";
+                    }
+                }
 
                 function destination(dest) {
                     return d = "n" ? "North - Red":

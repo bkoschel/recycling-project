@@ -2,6 +2,9 @@ let autocomplete;
 let name;
 let long;
 let lat;
+let coords = {
+    table: []
+};
 window.initAutocomplete = function() {
     autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('autocomplete'),
@@ -26,6 +29,7 @@ function onPlaceChanged() {
         name = place.name;
         lat = place.geometry.location.lat();
         long = place.geometry.location.lng();
+        coords.table.push({lat: lat, long: long});
     }
 }
 
@@ -39,4 +43,18 @@ function getLong() {
 
 function getPlaceName() {
     return name;
+}
+function writeToJson() {
+    var json = JSON.stringify(coords);
+    var fs = require('fs');
+    fs.writeFile('myjsonfile.json', json, 'utf8', callback);
+    fs.readFile('myjsonfile.json', 'utf8', function readFileCallback(err, data){
+        if (err){
+            console.log(err);
+        } else {
+            coords = JSON.parse(data); //now it an object
+            coords.table.push({id: 2, square:3}); //add some data
+            json = JSON.stringify(coords); //convert it back to json
+            fs.writeFile('myjsonfile.json', json, 'utf8', callback); // write it back
+        }});
 }
