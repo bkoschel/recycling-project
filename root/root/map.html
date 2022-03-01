@@ -44,22 +44,49 @@
                 </div>
             </div>
         </nav>
-<!--		<header class="masthead">-->
-<!--            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">-->
-<!--                <div class="d-flex justify-content-center">-->
-<!--                    <div class="text-center">-->
-<!--                        <h1 class="mx-auto my-0 text-uppercase">re!schedule</h1>-->
-<!--                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Get your locations recycling, garbage and compost pick up schedule.</h2>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </header>-->
-		<section class="map-section bg-light" id="map">
+		<section class="address-section">
+<!--            <script defer>-->
+<!--                let autocomplete;-->
+<!--                function initAutocomplete() {-->
+<!--                    autocomplete = new google.maps.places.Autocomplete(-->
+<!--                        document.getElementById('autocomplete'),-->
+<!--                        {-->
+<!--                            types: ['geocode'],-->
+<!--                            componentRestrictions: {'country' : ['CA']},-->
+<!--                            fields: ['place_id', 'geometry', 'name']-->
+<!--                        });-->
+<!--                    autocomplete.addListener('place_changed', onPlaceChanged);-->
+<!--                }-->
+
+<!--                function onPlaceChanged() {-->
+<!--                    // get info on place selected-->
+<!--                    var place = autocomplete.getPlace();-->
+
+<!--                    if (!place.geometry) {-->
+<!--                        // User did not select a prediction; reset the input field-->
+<!--                        document.getElementById('autocomplete').placeholder = 'Enter a place';-->
+<!--                    } else {-->
+<!--                        // Display details about the valid place-->
+<!--                        // document.getElementById('details').innerHTML = place.name;-->
+<!--                        document.getElementById('city2').textContent = place.name;-->
+<!--                        document.getElementById('cityLat').textContent = place.geometry.location.lat();-->
+<!--                        document.getElementById('cityLon').textContent = place.geometry.location.lng();-->
+<!--                    }-->
+<!--                }-->
+<!--            </script>-->
+            <script async src="js/autocomplete.js"></script>
+            <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnho33gwnDR-rdbvSdEtERPMku2jR-W-0&libraries=places&callback=initAutocomplete" async defer></script>
+            <div class="row input-group-sm">
+                <div class="col"><input class="form-control" id="autocomplete" type="text" placeholder="Enter a place" aria-label="Enter a place"/></div>
+            </div>
+<!--            <div class="form-control" id="autocomplete" placeholder="Enter a place" type="text"/>-->
+        </section>
+		<section class="map-section bg-white" id="map">
+
             <div class="container px-4 px-lg-5">
                 <!-- Featured Project Row-->
                 <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
                     <h4 class="align-items-center">Find your location on the map</h4>
-                    <div id="map"></div>
                     <!-- <script scr="/ui/recycling-project/root/js/geolocation.js"></script> -->
                     <script>
                         const mymap = L.map('map', {zoom: 13}).setView([ 49.263, -123.1919], 13);
