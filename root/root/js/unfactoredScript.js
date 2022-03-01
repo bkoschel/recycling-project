@@ -32,16 +32,16 @@ var yellowSouthLayer = L.geoJSON.ajax('zone-yellow-south.json', {style:style});
 
 function getColor(name) {
     return name == "Red-North" ? '#de2d26':
-            name == "Red-South" ? '#f03b20':
+        name == "Red-South" ? '#f03b20':
             name == "Blue-North" ? '#2b8cbe':
-            name == "Blue-South" ? '#9ecae1':
-            name == "Green-North" ? '#31a354':
-            name == "Green-South" ? '#a1d99b':
-            name == "Purple-North" ? '#756bb1':
-            name == "Purple-South" ? '#bcbddc':
-            name == "Yellow-North" ? '#fec44f':
-            name == "Yellow-South" ? '#fff7bc':
-                                    'ffffff';
+                name == "Blue-South" ? '#9ecae1':
+                    name == "Green-North" ? '#31a354':
+                        name == "Green-South" ? '#a1d99b':
+                            name == "Purple-North" ? '#756bb1':
+                                name == "Purple-South" ? '#bcbddc':
+                                    name == "Yellow-North" ? '#fec44f':
+                                        name == "Yellow-South" ? '#fff7bc':
+                                            'ffffff';
 }
 
 function style(feature) {
@@ -57,7 +57,7 @@ function style(feature) {
 
 function destination(dest) {
     return d = "n" ? "North - Red":
-                        "Unknown";
+        "Unknown";
 }
 
 function date() {
@@ -65,10 +65,10 @@ function date() {
 }
 
 function message() {
-    return "<h1> Recycling Schedule: </h1> " + 
-    "<h2>" + destination("n") +" </h2>" +
-    "<p> Garbage Pickup: " + date() + "</p>" +
-    "<p> Green Bin:" + date() + " </p>"
+    return "<h1> Recycling Schedule: </h1> " +
+        "<h2>" + destination("n") +" </h2>" +
+        "<p> Garbage Pickup: " + date() + "</p>" +
+        "<p> Green Bin:" + date() + " </p>"
 
 }
 
@@ -112,4 +112,3 @@ console.log('what');
 // L.geoJSON(geoJsonLayer, {style:style}).addTo(mymap);
 // marker.setLatLng([49.263, -123.1919]);
 // marker.bindPopup(message).openPopup();
-

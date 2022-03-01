@@ -1,219 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>re!schedule</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <!-- Leaflet Map setup-->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-              integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-              crossorigin=""/>
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-                integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-                crossorigin=""></script>
-        <!-- plugin set up -->
-        <script src="js/leaflet.ajax.min.js"></script>
-		
-    </head>
-	<body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">re!schedule</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="./index.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./map.html">Map</a></li>
-						<li class="nav-item"><a class="nav-link" href="./calendar.html">Calendar</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./signup.html">Subscribe</a></li>
-                    </ul>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>re!schedule</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Leaflet Map setup-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+    <!-- plugin set up -->
+    <script src="js/leaflet.ajax.min.js"></script>
+
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#page-top">re!schedule</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="./index.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="./map.html">Map</a></li>
+                <li class="nav-item"><a class="nav-link" href="./calendar.html">Calendar</a></li>
+                <li class="nav-item"><a class="nav-link" href="./signup.html">Subscribe</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="address-section">
+    <script async src="js/autocomplete.js"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnho33gwnDR-rdbvSdEtERPMku2jR-W-0&libraries=places&callback=initAutocomplete" async defer></script>
+    <div class="row input-group-sm">
+        <div class="col"><input class="form-control" id="autocomplete" type="text" placeholder="Enter a place" aria-label="Enter a place"/></div>
+    </div>
+    <!--            <div class="form-control" id="autocomplete" placeholder="Enter a place" type="text"/>-->
+</section>
+<section class="map-section bg-white" id="map">
+
+    <div class="container px-4 px-lg-5">
+        <!-- Featured Project Row-->
+        <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+            <h4 class="align-items-center">Find your location on the map</h4>
+            <!-- <script scr="/ui/recycling-project/root/js/geolocation.js"></script> -->
+            <script>
+                // attribution as required
+                const attribution = '&copy; <a href= "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+                const tileURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+                // setting map options
+                var mapOptions = {
+                    center: [49.263, -123.1919],
+                    zoom: 13
+                }
+
+                //creating map object
+                var mymap = L.map('map', mapOptions);
+
+                // setting up base layer
+                var baseLayer = new L.tileLayer(tileURL, {attribution});
+                mymap.addLayer(baseLayer);
+
+                // creating marker icon
+                var binIcon = L.icon({
+                    iconUrl: 'assets/data/gomi_poribaketsu_close.png',
+                    iconSize: [25,25]
+                })
+                var binMarker = new L.marker([49.263, -123.1919], {icon: binIcon}).addTo(mymap);
+
+                // function forEachFeature(feature, layer) {
+                //     var popUpContent = "test";
+                //     layer.bindPopup(popUpContent).openPopUp;
+                // };
+
+                // setting sectioned areas
+                var redNorthLayer = L.geoJSON.ajax('./data/zone-red-north.json', {style:style});
+                var blueNorthLayer = L.geoJSON.ajax('./data/zone-blue-north.json', {style:style});
+                var purpleNorthLayer = L.geoJSON.ajax('./data/zone-purple-north.json', {style:style});
+                var greenNorthLayer = L.geoJSON.ajax('./data/zone-green-north.json', {style:style});
+                var yellowNorthLayer = L.geoJSON.ajax('./data/zone-yellow-north.json', {style:style});
+                var redSouthLayer = L.geoJSON.ajax('./data/zone-red-south.json', {style:style});
+                var blueSouthLayer = L.geoJSON.ajax('./data/zone-blue-south.json', {style:style});
+                var purpleSouthLayer = L.geoJSON.ajax('./data/zone-purple-south.json', {style:style});
+                var greenSouthLayer = L.geoJSON.ajax('./data/zone-green-south.json', {style:style});
+                var yellowSouthLayer = L.geoJSON.ajax('./data/zone-yellow-south.json', {style:style});
+
+                // var redNorth = L.geoJSON.ajax('zone-red-north.json', {style:style});
+
+                // var redSouth =  L.geoJSON.ajax('zone-red-south.json', {style:style});
+                // redNorth.addTo(mymap);
+                // redSouth.addTo(mymap);
+
+                var vancouver = L.geoJSON(null);
+
+                redNorthLayer.on('data:loaded', function () {
+                    vancouver.addLayer(redNorthLayer);
+                    vancouver.addLayer(redSouthLayer);
+                    vancouver.addLayer(blueNorthLayer);
+                    vancouver.addLayer(blueSouthLayer);
+                    vancouver.addLayer(purpleNorthLayer);
+                    vancouver.addLayer(purpleSouthLayer);
+                    vancouver.addLayer(greenNorthLayer);
+                    vancouver.addLayer(greenSouthLayer);
+                    vancouver.addLayer(yellowNorthLayer);
+                    vancouver.addLayer(yellowSouthLayer);
+                });
+
+                function style(feature) {
+                    return {
+                        fillColor: getColor(feature.properties.name),
+                        weight: 2,
+                        opacity: 1,
+                        color: 'white',
+                        dashArray: '3',
+                        fillOpacity: 0.7
+                    };
+                };
+
+                function getColor(name) {
+                    return name == "Red-North" ? '#de2d26':
+                        name == "Red-South" ? '#f03b20':
+                            name == "Blue-North" ? '#2b8cbe':
+                                name == "Blue-South" ? '#9ecae1':
+                                    name == "Green-North" ? '#31a354':
+                                        name == "Green-South" ? '#a1d99b':
+                                            name == "Purple-North" ? '#756bb1':
+                                                name == "Purple-South" ? '#bcbddc':
+                                                    name == "Yellow-North" ? '#fec44f':
+                                                        name == "Yellow-South" ? '#fff7bc':
+                                                            'ffffff';
+                };
+
+
+                //var redNorth = redNorthLayer.feature.coordinates;
+
+
+                // var higlight = {
+                //     'fillColor': "yellow",
+                //     "weight": 2,
+                //     "opacity": 1
+                // };
+
+                // function forEachFeature(feature, layer) {
+                //     var popupContent = "Test";
+                //     layer.bindPopup(popupContent);
+                //     layer.on("click", function (e) {
+                //         vancouver.setStyle(style);
+                //         layer.setStyle(hightlight);
+                //     })
+                // };
+
+                // var vancouver = L.geoJson(null, {onEachFeature: forEachFeature, style:style});
+
+                // $.getJSON(redNorth, function(data) {
+                //     vancouver.addData(data);
+                // });
+
+                // vancouver.addTo(mymap);
+
+                // var baseMap = {
+                //     "Open Street Map": baseLayer
+                // };
+
+                // var overlayMaps = {
+                //     "geoJson": vancouver
+                // };
+
+                // L.control.layers(baseMap, overlayMaps).addTo(mymap);
+
+
+
+                // creating polygons
+                // var redPolygon = L.polygon(redNorth, {style:style});
+
+                // var layerGroup = L.layerGroup ([redPolygon]);
+                // layerGroup.addto(mymap);
+
+                // var redLayer = L.layergroup([redNorthLayer, redSouthLayer]);
+
+                // var vancouver = L.layerGroup([redLayer]);
+
+
+                function message() {
+                    // if (isMarkerInside([-123.215515,49.260201,0], redNorth)) {
+                    //     return "test";
+                    // } else {
+                    // return "<h1> Recycling Schedule: </h1> " +
+                    // "<h2>" + destination("n") +" </h2>" +
+                    // "<p> Garbage Pickup: " + date() + "</p>" +
+                    // "<p> Green Bin:" + date() + " </p>"
+                    // }
+                    return "test";
+                    // return await printGreenBin("N-blue");
+
+                };
+
+
+
+
+
+
+
+                function destination(dest) {
+                    return d = "n" ? "North - Red":
+                        "Unknown";
+                }
+
+                function date() {
+                    return "Jan 7";
+                }
+
+                //var polyPoints = [-123.215515,49.260201,0];
+
+                // function message() {
+                //     if (isMarkerInside([-123.215515,49.260201,0], redNorth)) {
+                //         return "test";
+                //     } else {
+                //     return "<h1> Recycling Schedule: </h1> " +
+                //     "<h2>" + destination("n") +" </h2>" +
+                //     "<p> Garbage Pickup: " + date() + "</p>" +
+                //     "<p> Green Bin:" + date() + " </p>"
+                //     }
+
+                // };
+
+                // function isMarkerInside(marker, poly) {
+                //     var inside = false;
+                //     var x = marker.getLatLng().lat, y = marker.getLatLng.lng;
+                //     for (var ii=0;ii<poly.getLatLngs().length;ii++){
+                //         var polyPoints = poly.getLatLngs()[ii];
+                //         for (var i = 0, j = polyPoints.length - 1; i < polyPoints.length; j = i++) {
+                //             var xi = polyPoints[i].lat, yi = polyPoints[i].lng;
+                //             var xj = polyPoints[j].lat, yj = polyPoints[j].lng;
+
+                //             var intersect = ((yi > y) != (yj > y))
+                //                 && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+                //             if (intersect) inside = !inside;
+                //         }
+                //     }
+
+                //     return inside;
+
+                // }
+
+                // redNorthLayer.addTo(mymap);
+                // blueNorthLayer.addTo(mymap);
+                // purpleNorthLayer.addTo(mymap);
+                // yellowNorthLayer.addTo(mymap);
+                // greenNorthLayer.addTo(mymap);
+                // redSouthLayer.addTo(mymap);
+                // blueSouthLayer.addTo(mymap);
+                // purpleSouthLayer.addTo(mymap);
+                // greenSouthLayer.addTo(mymap);
+                // yellowSouthLayer.addTo(mymap);
+
+                // only works in HTTPS/local environments
+                if ('geolocation' in navigator) {
+                    navigator.geolocation.getCurrentPosition(onSuccess,onErrorDenied);
+                } else {
+                    console.log("sos ain't working");
+                }
+
+                function onSuccess(position) {
+                    lat = position.coords.latitude;
+                    lon = position.coords.longitude;
+                    binMarker.setLatLng([lat, lon]);
+                    console.log('huh');
+                }
+
+                function onErrorDenied(error) {
+                    if (error.PERMISSION_DENIED) {
+                        console.log('denied');
+                        binMarker.setLatLng([49.263,-123.1919]);
+                    } else {
+                        console.log('bye');
+                    }
+                }
+
+                console.log('what');
+
+                function getValue() {
+                    const value = addressText.value;
+                    console.log(value);
+                }
+
+                vancouver.addTo(mymap);
+
+                //L.geoJSON(geoJsonLayer, {style:style}).addTo(mymap);
+                binMarker.setLatLng([49.263, -123.1919]);
+                binMarker.bindPopup(message).openPopup();
+
+
+            </script>
+            <!-- <iframe type= "text/javascript" src="/ui/recycling-project/root/js/geolocation.js"></iframe> -->
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d85364.59519825508!2d-123.12842412459217!3d49.24766809191783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1642652910303!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+            <div class="col-xl-4 col-lg-5">
+                <div class="featured-text text-center text-lg-left">
+
                 </div>
             </div>
-        </nav>
-		<section class="address-section">
-<!--            <script defer>-->
-<!--                let autocomplete;-->
-<!--                function initAutocomplete() {-->
-<!--                    autocomplete = new google.maps.places.Autocomplete(-->
-<!--                        document.getElementById('autocomplete'),-->
-<!--                        {-->
-<!--                            types: ['geocode'],-->
-<!--                            componentRestrictions: {'country' : ['CA']},-->
-<!--                            fields: ['place_id', 'geometry', 'name']-->
-<!--                        });-->
-<!--                    autocomplete.addListener('place_changed', onPlaceChanged);-->
-<!--                }-->
+        </div>
+    </div>
+</section>
+</body>
 
-<!--                function onPlaceChanged() {-->
-<!--                    // get info on place selected-->
-<!--                    var place = autocomplete.getPlace();-->
-
-<!--                    if (!place.geometry) {-->
-<!--                        // User did not select a prediction; reset the input field-->
-<!--                        document.getElementById('autocomplete').placeholder = 'Enter a place';-->
-<!--                    } else {-->
-<!--                        // Display details about the valid place-->
-<!--                        // document.getElementById('details').innerHTML = place.name;-->
-<!--                        document.getElementById('city2').textContent = place.name;-->
-<!--                        document.getElementById('cityLat').textContent = place.geometry.location.lat();-->
-<!--                        document.getElementById('cityLon').textContent = place.geometry.location.lng();-->
-<!--                    }-->
-<!--                }-->
-<!--            </script>-->
-            <script async src="js/autocomplete.js"></script>
-            <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnho33gwnDR-rdbvSdEtERPMku2jR-W-0&libraries=places&callback=initAutocomplete" async defer></script>
-            <div class="row input-group-sm">
-                <div class="col"><input class="form-control" id="autocomplete" type="text" placeholder="Enter a place" aria-label="Enter a place"/></div>
-            </div>
-<!--            <div class="form-control" id="autocomplete" placeholder="Enter a place" type="text"/>-->
-        </section>
-		<section class="map-section bg-white" id="map">
-
-            <div class="container px-4 px-lg-5">
-                <!-- Featured Project Row-->
-                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <h4 class="align-items-center">Find your location on the map</h4>
-                    <!-- <script scr="/ui/recycling-project/root/js/geolocation.js"></script> -->
-                    <script>
-                        const mymap = L.map('map', {zoom: 13}).setView([ 49.263, -123.1919], 13);
-                        const marker = L.marker([0,0]).addTo(mymap);
-
-
-
-                        const attribution = '&copy; <a href= "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-
-                        const tileURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-                        const tiles = L.tileLayer(tileURL,{ attribution });
-                        tiles.addTo(mymap);
-
-                        //   var geoJsonLayer; = L.geoJSON.ajax('zone-red-north.json');
-                        var redNorthLayer = L.geoJSON.ajax('assets/data/zone-red-north.json', {style:style});
-                        var blueNorthLayer = L.geoJSON.ajax('assets/data/zone-blue-north.json', {style:style});
-                        var purpleNorthLayer = L.geoJSON.ajax('assets/data/zone-purple-north.json', {style:style});
-                        var greenNorthLayer = L.geoJSON.ajax('assets/data/zone-green-north.json', {style:style});
-                        var yellowNorthLayer = L.geoJSON.ajax('assets/data/zone-yellow-north.json', {style:style});
-                        var redSouthLayer = L.geoJSON.ajax('assets/data/zone-red-south.json', {style:style});
-                        var blueSouthLayer = L.geoJSON.ajax('assets/data/zone-blue-south.json', {style:style});
-                        var purpleSouthLayer = L.geoJSON.ajax('assets/data/zone-purple-south.json', {style:style});
-                        var greenSouthLayer = L.geoJSON.ajax('assets/data/zone-green-south.json', {style:style});
-                        var yellowSouthLayer = L.geoJSON.ajax('assets/data/zone-yellow-south.json', {style:style});
-
-                        function getColor(name) {
-                            return name == "Red-North" ? '#de2d26':
-                                name == "Red-South" ? '#f03b20':
-                                    name == "Blue-North" ? '#2b8cbe':
-                                        name == "Blue-South" ? '#9ecae1':
-                                            name == "Green-North" ? '#31a354':
-                                                name == "Green-South" ? '#a1d99b':
-                                                    name == "Purple-North" ? '#756bb1':
-                                                        name == "Purple-South" ? '#bcbddc':
-                                                            name == "Yellow-North" ? '#fec44f':
-                                                                name == "Yellow-South" ? '#fff7bc':
-                                                                    'ffffff';
-                        }
-
-                        function style(feature) {
-                            return {
-                                fillColor: getColor(feature.properties.name),
-                                weight: 2,
-                                opacity: 1,
-                                color: 'white',
-                                dashArray: '3',
-                                fillOpacity: 0.7
-                            };
-                        }
-
-                        function destination(dest) {
-                            return d = "n" ? "North - Red":
-                                "Unknown";
-                        }
-
-                        function date() {
-                            return "Jan 7";
-                        }
-
-                        function message() {
-                            return "<h1> Recycling Schedule: </h1> " +
-                                "<h2>" + destination("n") +" </h2>" +
-                                "<p> Garbage Pickup: " + date() + "</p>" +
-                                "<p> Green Bin:" + date() + " </p>"
-
-                        }
-
-                        redNorthLayer.addTo(mymap);
-                        blueNorthLayer.addTo(mymap);
-                        purpleNorthLayer.addTo(mymap);
-                        yellowNorthLayer.addTo(mymap);
-                        greenNorthLayer.addTo(mymap);
-                        redSouthLayer.addTo(mymap);
-                        blueSouthLayer.addTo(mymap);
-                        purpleSouthLayer.addTo(mymap);
-                        greenSouthLayer.addTo(mymap);
-                        yellowSouthLayer.addTo(mymap);
-
-                        // only works in HTTPS/local environments
-                        if ('geolocation' in navigator) {
-                            navigator.geolocation.getCurrentPosition(onSuccess,onErrorDenied);
-                        } else {
-                            console.log("sos ain't working");
-                        }
-
-                        function onSuccess(position) {
-                            lat = position.coords.latitude;
-                            lon = position.coords.longitude;
-                            marker.setLatLng([lat, lon]);
-                            console.log('huh');
-                        }
-
-                        function onErrorDenied(error) {
-                            if (error.PERMISSION_DENIED) {
-                                console.log('denied');
-                                marker.setLatLng([49.263,-123.1919]);
-                            } else {
-                                console.log('bye');
-                            }
-                        }
-
-                        console.log('what');
-
-                        function getValue() {
-                            const value = addressText.value;
-                            console.log(value);
-                        }
-
-
-                        // L.geoJSON(geoJsonLayer, {style:style}).addTo(mymap);
-                        // marker.setLatLng([49.263, -123.1919]);
-                        // marker.bindPopup(message).openPopup();
-
-
-
-
-                    </script>
-                    <!-- <iframe type= "text/javascript" src="/ui/recycling-project/root/js/geolocation.js"></iframe> -->
-                    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d85364.59519825508!2d-123.12842412459217!3d49.24766809191783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1642652910303!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="featured-text text-center text-lg-left">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-	</body>
-	
 </html>
