@@ -17,11 +17,10 @@ Implemented but not incorporated:
 Future plans:
 - to further this into a mobile app
 
-
-
 By:
 
 - Beth Koschel
 - Hannah Jeong
 - Jo Rene Ng
 - Kitty Yan
+
